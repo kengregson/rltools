@@ -10,9 +10,9 @@ function USAGE {
   echo -e "(created, for example, by the companion 'rlc' script)."
   echo -e "\nThe input is a series of comma separated value (CSV) lines read from standard"
   echo -e "input consisting of a topic tag and absolute path to a document/file."
-  echo -e "\nOptions recognized::"
+  echo -e "\nOptions recognized:"
   echo -e "-a -- The application name (default: Preview)"
-  echo -e "-f -- Read input from named file (default: STDIN)"
+  echo -e "-f -- Read input from named file (default: read from STDIN)"
   echo -e "\nAll remaining positional (non-option) parameters are concatenated (joined with"
   echo -e "a blank separator) and used as the reading list topic tag (default: 'ReadLater')\n"
   exit 1
