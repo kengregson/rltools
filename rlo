@@ -14,7 +14,7 @@ function USAGE {
   echo -e "-a -- The application name (default: Preview)"
   echo -e "-f -- Read input from named file (default: read from STDIN)"
   echo -e "\nAll remaining positional (non-option) parameters are concatenated (joined with"
-  echo -e "a blank separator) and used as the reading list topic tag (default: 'ReadLater')\n"
+  echo -e "a blank separator) and used as the reading list topic tag (default: all topics)\n"
   exit 1
 }
 
@@ -47,7 +47,7 @@ done
 # Join remaining command line arguments
 IND=$(expr $OPTIND - 1)
 REST=("${ARGS[@]:$IND}")
-TOPIC=${REST[@]:-"ReadLater"}
+TOPIC=${REST[@]:-".*"}
 
 # Open files with matching topic tag
 FILES=$(grep "^$TOPIC" <&0 | awk '{print $2}')
