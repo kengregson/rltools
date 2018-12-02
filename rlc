@@ -13,7 +13,7 @@ function USAGE {
   echo -e "-t -- The document/file type opened by the application (default: '.pdf')"
   echo -e "-f -- Append output to named file (default: STDIN)"
   echo -e "\nAll remaining positional (non-option) parameters are concatenated (joined with"
-  echo -e "a blank separator) and used as the reading list topic tag (default: 'To Read')\n"
+  echo -e "a blank separator) and used as the reading list topic tag (default: 'ReadLater')\n"
   exit 1
 }
 
@@ -50,7 +50,7 @@ done
 # Join remaining command line arguments
 IND=$(expr $OPTIND - 1)
 REST=("${ARGS[@]:$IND}")
-TOPIC=${REST[@]:-"To Read"}
+TOPIC=${REST[@]:-"ReadLater"}
 
 # Get all open files of application run by curent user filtered by document type
 FILES=($(lsof -c $APP | grep $TYPE | awk -v user=$USER '{if ($3 == user) print $9}'))
