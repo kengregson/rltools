@@ -1,0 +1,61 @@
+#! /bin/bash
+SCRIPT=`basename ${BASH_SOURCE[0]}`
+ARGS=("$@")
+
+# Print usage and exit
+function USAGE {
+  echo -e "\nUsage: $SCRIPT 'topic'"
+  echo -e "\nCreate a reading list from documents currently open in an application."
+  echo -e "\nThe output is a series of comma separated value (CSV) lines written to standard"
+  echo -e "out consisting of a topic tag and absolute path to an open document/file."
+  echo -e "\nOptions recognized::"
+  echo -e "-a -- The application name (default: Preview)"
+  echo -e "-t -- The document/file type opened by the application (default: '.pdf')"
+  echo -e "-f -- Append output to named file (default: STDIN)"
+  echo -e "\nAll remaining positional (non-option) parameters are concatenated (joined with"
+  echo -e "a blank separator) and used as the reading list topic tag (default: 'To Read')\n"
+  exit 1
+}
+
+# Option defaults
+APP="Preview"
+TYPE=".pdf"
+FILE="STDOUT"
+
+# Command line options
+while getopts :ha:t:f: OPT; do
+  case $OPT in
+    a)
+      APP=$OPTARG
+      ;;
+    t)
+      TYPE=$OPTARG
+      ;;
+    f)
+      FILE=$OPTARG
+      ;;
+    h)
+      USAGE
+      ;;
+    \?)
+      echo -e "\nInvalid command line option - $OPTARG"
+      USAGE
+      ;;
+  esac
+done
+
+# Optionally redirect output and append to specified file
+[ "$FILE" != "STDOUT" ] && exec >> $FILE
+
+# Join remaining command line arguments
+IND=$(expr $OPTIND - 1)
+REST=("${ARGS[@]:$IND}")
+TOPIC=${REST[@]:-"To Read"}
+
+# Get all open files of application run by curent user filtered by document type
+FILES=($(lsof -c $APP | grep $TYPE | awk -v user=$USER '{if ($3 == user) print $9}'))
+
+# Associate each file with topic in output
+for FILE in ${FILES[@]}; do
+  echo "$TOPIC, $FILE"
+done
