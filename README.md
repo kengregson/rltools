@@ -53,4 +53,4 @@ will open all the documents previously saved in the file readinglist.csv with an
 
     rlo -f computervision.lst Segmentation
 
-would open only the documents tagged 'Segmentation' in the computervisdion.lst reading list.
+would open only the documents tagged 'Segmentation' in the computervision.lst reading list.
