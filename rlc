@@ -9,9 +9,10 @@ function USAGE {
   echo -e "\nThe output is a series of comma separated value (CSV) lines written to standard"
   echo -e "out consisting of a topic tag and absolute path to an open document/file."
   echo -e "\nOptions recognized:"
+  echo -e "-h -- Print usage message and exit"
+  echo -e "-f -- Append output to named file (default: write to STDOUT)"
   echo -e "-a -- The application name (default: Preview)"
   echo -e "-t -- The document/file type opened by the application (default: '.pdf')"
-  echo -e "-f -- Append output to named file (default: write to STDOUT)"
   echo -e "\nAll remaining positional (non-option) parameters are concatenated (joined with"
   echo -e "a blank separator) and used as the reading list topic tag (default: 'ReadLater')\n"
   exit 1

@@ -11,8 +11,9 @@ function USAGE {
   echo -e "\nThe input is a series of comma separated value (CSV) lines read from standard"
   echo -e "input consisting of a topic tag and absolute path to a document/file."
   echo -e "\nOptions recognized:"
-  echo -e "-a -- The application name (default: Preview)"
+  echo -e "-h -- Print usage message and exit"
   echo -e "-f -- Read input from named file (default: read from STDIN)"
+  echo -e "-a -- The application name (default: Preview)"
   echo -e "\nAll remaining positional (non-option) parameters are concatenated (joined with"
   echo -e "a blank separator) and used as the reading list topic tag (default: all topics)\n"
   exit 1
