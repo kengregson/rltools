@@ -46,9 +46,11 @@ Will create (or overwrite) the file 'yourtopicname.csv'.  Append the contents to
 For safety, output will be appended to any contents already in the file. Reading list files can have any file extension. When appending to an existing file, documents on different topics may be combined.  The same document may also be stored under different topics. The scripts don't impose any requirement on how reading lists are managed, supporting both single or multiple lists and single or multi-topic lists.
 
 The files in a reading list my be reopened with the `rlo` command (`rlo -h` for usage instructions).
+
     rlo < readinglist.csv
 
 will open all the documents previously saved in the file readinglist.csv with any topic tag.  Documents on a specific topic can be opened by specifying the topic name on the command line.
+
     rlo -f computervision.lst Segmentation
 
 would open only the documents tagged 'Segmentation' in the computervisdion.lst reading list.
